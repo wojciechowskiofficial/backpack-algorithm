@@ -4,8 +4,7 @@
 class Generator {
 	public:
 		Generator();
-		~Generator();
-		bool gen(int quantity, int max_value, int max_weight);
+		bool gen(int max_value, int max_weight, int quantity);
 		Item * gen_arr;
 };
 #endif
