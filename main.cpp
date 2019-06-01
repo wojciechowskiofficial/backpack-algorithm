@@ -2,8 +2,8 @@
 
 #include "Item.h"
 #include "Generator.h"
+#include "Knapsack.h"
 
 int main() {
-	std::cout << "hello knapsacks!!!" << std::endl;
 	return 0;
 }

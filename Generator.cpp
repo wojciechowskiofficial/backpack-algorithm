@@ -4,11 +4,16 @@
 #include "Item.h"
 #include "Generator.h"
 
+Generator::Generator() {
+	this->gen_arr = NULL;
+}
+
 Generator::~Generator() {
 	if (this->gen_arr != NULL) {
 		delete [] this->gen_arr;
 	}
 }
+
 bool Generator::gen(int quantity, int max_value, int max_weight) {
 	if (this->gen_arr != NULL) {
 		return false;
