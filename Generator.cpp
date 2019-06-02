@@ -8,13 +8,7 @@ Generator::Generator() {
 	this->gen_arr = NULL;
 }
 
-Generator::~Generator() {
-	if (this->gen_arr != NULL) {
-		delete [] this->gen_arr;
-	}
-}
-
-bool Generator::gen(int quantity, int max_value, int max_weight) {
+bool Generator::gen(int max_value, int max_weight, int quantity) {
 	if (this->gen_arr != NULL) {
 		return false;
 	}

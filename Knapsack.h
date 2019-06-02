@@ -1,3 +1,5 @@
+#include <vector>
+
 #include "Item.h"
 
 #ifndef KNAPSACK_H
@@ -7,8 +9,10 @@ class Knapsack {
 	public:
 		Knapsack();
 		~Knapsack();
-		Item * contents;
-		int capasity;
+		std::vector<Item> contents;
+		void show();
+		int capacity;
+		int real_weight;
 		bool dyn, brute, greedy;
 };
 #endif
