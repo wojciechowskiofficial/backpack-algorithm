@@ -14,13 +14,23 @@ Handle::Handle() {
 }
 
 Handle::~Handle() {
-	this->generator = NULL;
-	this->knapsack = NULL;
-	this->gen_arr = NULL;
+	if (this->generator != NULL) {
+		delete this->generator;
+		this->generator = NULL;
+	}
+	if (this->knapsack != NULL) {
+		delete this->knapsack;
+		this->knapsack = NULL;
+	}
+	if (this->gen_arr != NULL) {
+		delete [] this->gen_arr;
+		this->gen_arr = NULL;
+	}
 }
 
-bool Handle::greedy_comp(Item a, Item b) {
-	return a.vw_ratio < b.vw_ratio;
+//utility bool function for std::sort by object atributej
+bool greedy_comp(Item a, Item b) {
+	return a.vw_ratio > b.vw_ratio;
 }
 
 bool Handle::solve_greedy(int max_value, int max_weight, int quantity) {
@@ -32,14 +42,28 @@ bool Handle::solve_greedy(int max_value, int max_weight, int quantity) {
 	this->gen_arr = this->generator->gen_arr;
 	delete this->generator;
 	this->generator = NULL;
-	std::vector<Item> wektor;
-
+	std::vector<Item> utility_vec;
 	for (int i = 0; i < quantity; i++) {
 		this->gen_arr[i].vw_ratio = (float) this->gen_arr[i].value / (float) this->gen_arr[i].weight;
-		this->gen_arr[i].show();
-		wektor.push_back(this->gen_arr[i]);
+		utility_vec.push_back(this->gen_arr[i]);
 	}
-	
-	std::sort(wektor.begin(), wektor.end(), this->greedy_comp);
+	std::sort(utility_vec.begin(), utility_vec.end(), greedy_comp);
+	delete [] this->gen_arr;
+	this->gen_arr = NULL;
+	this->gen_arr = new Item [quantity];
+	for (int i = 0; i < quantity; i++) {
+		this->gen_arr[i] = utility_vec.at(i);
+	}
+	this->knapsack = new Knapsack();
+	this->knapsack->capasity = quantity;
+	this->knapsack->greedy = true;
+	int curr_weight = 0, iterator = 0;
+
+	while (curr_weight + utility_vec.at(iterator).weight <= this->knapsack->capasity) {
+		this->knapsack->contents.push_back(utility_vec.at(iterator));
+		curr_weight += utility_vec.at(iterator).weight;
+		iterator++;
+	}
+	this->knapsack->real_weight = curr_weight;
 
 }

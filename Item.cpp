@@ -17,7 +17,7 @@ Item::~Item() {
 }
 
 void Item::show() {
-	std::cout << "[ id:\t" << this->id << " value:\t" << this->value << " weight:\t" 
-		<< this->weight << " value/weight ratio:\t" 
-		<< this->vw_ratio << "]" << std::endl;
+	std::cout << "[ id:" << this->id << "\tvalue:\t" << this->value << "\tweight:\t" 
+		<< this->weight << "\tvalue/weight ratio:" 
+		<< this->vw_ratio << " ]" << std::endl;
 }

@@ -15,8 +15,6 @@ class Handle {
 		Knapsack * knapsack;
 		Item * gen_arr;
 		bool solve_greedy(int max_value, int max_weight, int quantity);
-	private:
-		bool greedy_comp(Item a, Item b);
 };
 
 #endif
