@@ -12,6 +12,7 @@ class Handle {
 		~Handle();
 		Knapsack * knapsack;
 		Item * gen_arr;
+		void copy_gen_arr(Item * _gen_arr, int quantity);
 		bool solve_greedy(int max_value, int max_weight, int quantity, int _capasity, Item * _gen_arr);
 		bool solve_dynamic(int max_value, int max_weight, int quantity, int _capasity, Item * _gen_arr, bool print_arr);
 };

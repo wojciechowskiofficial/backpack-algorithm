@@ -19,7 +19,7 @@ void Measure::measure() {
 		generator = new Generator();
 		generator->gen(size, size, size);
 		begin = clock();
-		safety_bit = handle->solve_greedy(size, size, size, size, generator->gen_arr);
+		safety_bit = handle->solve_greedy(size, size, size, size / 10, generator->gen_arr);
 		end = clock();
 		while (!safety_bit) {
 			delete handle;
@@ -29,23 +29,21 @@ void Measure::measure() {
 			safety_bit = handle->solve_greedy(size, size, size, size, generator->gen_arr);
 			end = clock();
 		}
-		std::cout << size << " " << double (end - begin) / CLOCKS_PER_SEC << std::endl;
-		out << size << " " << double (end - begin) / CLOCKS_PER_SEC << std::endl;
-		/*
+		std::cout << size << " " << double (end - begin) / CLOCKS_PER_SEC << " ";
+		out << size << " " << double (end - begin) / CLOCKS_PER_SEC << " ";
 		delete handle;
 		handle = NULL;
 
 		handle = new Handle();
 		begin = clock();
-		safety_bit = handle->solve_dynamic(size, size, size, size, generator->gen_arr, false);
+		safety_bit = handle->solve_dynamic(size, size, size, size / 10, generator->gen_arr, false);
 		end = clock();
 		std::cout << double (end - begin) / CLOCKS_PER_SEC << std::endl;
 		out << double (end - begin) / CLOCKS_PER_SEC << std::endl;
 		delete handle;
 		handle = NULL;
 
-		*/
-		size += 20000;
+		size += 5000;
 		delete generator;
 		generator = NULL;
 	}

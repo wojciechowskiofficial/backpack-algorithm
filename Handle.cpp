@@ -16,12 +16,10 @@ Handle::~Handle() {
 		delete this->knapsack;
 		this->knapsack = NULL;
 	}
-	/*
 	if (this->gen_arr != NULL) {
 		delete [] this->gen_arr;
 		this->gen_arr = NULL;
 	}
-	*/
 }
 
 //utility bool function for std::sort by object atributej
@@ -29,11 +27,19 @@ bool greedy_comp(Item a, Item b) {
 	return a.vw_ratio > b.vw_ratio;
 }
 
+void Handle::copy_gen_arr(Item * _gen_arr, int quantity) {
+	this->gen_arr = new Item [quantity];
+	for (int i = 0; i < quantity; i++) {
+		this->gen_arr[i].weight = _gen_arr[i].weight;
+		this->gen_arr[i].value = _gen_arr[i].value;
+	}
+}
+
 bool Handle::solve_greedy(int max_value, int max_weight, int quantity, int _capasity, Item * _gen_arr) {
 	if (this->knapsack != NULL || this->gen_arr != NULL) {
 		return false;
 	}
-	this->gen_arr = _gen_arr;
+	this->copy_gen_arr(_gen_arr, quantity);
 	std::vector<Item> utility_vec;
 	for (int i = 0; i < quantity; i++) {
 		this->gen_arr[i].vw_ratio = (float) this->gen_arr[i].value / (float) this->gen_arr[i].weight;
