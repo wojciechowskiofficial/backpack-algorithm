@@ -5,19 +5,13 @@
 #include "Handle.h"
 #include "Item.h"
 #include "Knapsack.h"
-#include "Generator.h"
 
 Handle::Handle() {
-	this->generator = NULL;
 	this->knapsack = NULL;
 	this->gen_arr = NULL;
 }
 
 Handle::~Handle() {
-	if (this->generator != NULL) {
-		delete this->generator;
-		this->generator = NULL;
-	}
 	if (this->knapsack != NULL) {
 		delete this->knapsack;
 		this->knapsack = NULL;
@@ -33,15 +27,11 @@ bool greedy_comp(Item a, Item b) {
 	return a.vw_ratio > b.vw_ratio;
 }
 
-bool Handle::solve_greedy(int max_value, int max_weight, int quantity) {
-	if (this->generator != NULL || this->knapsack != NULL || this->gen_arr != NULL) {
+bool Handle::solve_greedy(int max_value, int max_weight, int quantity, int capasity, Item * _gen_arr) {
+	if (this->knapsack != NULL || this->gen_arr != NULL) {
 		return false;
 	}
-	this->generator = new Generator();
-	this->generator->gen(max_value, max_weight, quantity);
-	this->gen_arr = this->generator->gen_arr;
-	delete this->generator;
-	this->generator = NULL;
+	this->gen_arr = _gen_arr;
 	std::vector<Item> utility_vec;
 	for (int i = 0; i < quantity; i++) {
 		this->gen_arr[i].vw_ratio = (float) this->gen_arr[i].value / (float) this->gen_arr[i].weight;
@@ -55,7 +45,7 @@ bool Handle::solve_greedy(int max_value, int max_weight, int quantity) {
 		this->gen_arr[i] = utility_vec.at(i);
 	}
 	this->knapsack = new Knapsack();
-	this->knapsack->capasity = quantity;
+	this->knapsack->capasity = capasity;
 	this->knapsack->greedy = true;
 	int curr_weight = 0, iterator = 0;
 
