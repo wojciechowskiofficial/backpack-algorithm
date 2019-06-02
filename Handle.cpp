@@ -16,10 +16,12 @@ Handle::~Handle() {
 		delete this->knapsack;
 		this->knapsack = NULL;
 	}
+	/*
 	if (this->gen_arr != NULL) {
 		delete [] this->gen_arr;
 		this->gen_arr = NULL;
 	}
+	*/
 }
 
 //utility bool function for std::sort by object atributej
@@ -88,9 +90,11 @@ bool Handle::solve_dynamic(int max_value, int max_weight, int quantity, int _cap
 	this->knapsack->dyn = true;
 	this->gen_arr = _gen_arr;
 
+	/*
 	for (int i = 0; i < quantity; i++) {
 		this->gen_arr[i].show();
 	}
+	*/
 
 	for (int i = 1; i < quantity + 1; i++) {
 		for (int j = 1; j < _capasity + 1; j++) {

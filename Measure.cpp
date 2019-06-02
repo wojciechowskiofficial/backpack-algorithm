@@ -5,7 +5,7 @@
 #include "Generator.h"
 #include "Measure.h"
 
-void Measure::greedy_measure() {
+void Measure::measure() {
 	clock_t begin, end;
 	std::fstream out;
 	out.open("knapsack.txt", std::ios::out);
@@ -14,8 +14,6 @@ void Measure::greedy_measure() {
 	int size = 10000;
 	bool safety_bit;
 
-	std::cout << "greedy" << std::endl;
-	out << "greedy" << std::endl;
 	for (int i = 0; i < 20; i++) {
 		handle = new Handle();
 		generator = new Generator();
@@ -33,6 +31,20 @@ void Measure::greedy_measure() {
 		}
 		std::cout << size << " " << double (end - begin) / CLOCKS_PER_SEC << std::endl;
 		out << size << " " << double (end - begin) / CLOCKS_PER_SEC << std::endl;
+		/*
+		delete handle;
+		handle = NULL;
+
+		handle = new Handle();
+		begin = clock();
+		safety_bit = handle->solve_dynamic(size, size, size, size, generator->gen_arr, false);
+		end = clock();
+		std::cout << double (end - begin) / CLOCKS_PER_SEC << std::endl;
+		out << double (end - begin) / CLOCKS_PER_SEC << std::endl;
+		delete handle;
+		handle = NULL;
+
+		*/
 		size += 20000;
 		delete generator;
 		generator = NULL;

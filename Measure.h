@@ -3,7 +3,7 @@
 
 class Measure {
 	public:
-		void greedy_measure();
+		void measure();
 };
 
 #endif
