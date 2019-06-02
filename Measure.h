@@ -4,6 +4,7 @@
 class Measure {
 	public:
 		void measure();
+		void measure_brute();
 };
 
 #endif

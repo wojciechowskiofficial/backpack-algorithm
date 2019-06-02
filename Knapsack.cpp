@@ -4,7 +4,7 @@
 #include "Item.h"
 
 Knapsack::Knapsack() {
-	this->capasity = -1;
+	this->capacity = -1;
 	this->dyn = false;
 	this->brute = false;
 	this->greedy = false;
@@ -12,7 +12,7 @@ Knapsack::Knapsack() {
 }
 
 Knapsack::~Knapsack() {
-	this->capasity = -1;
+	this->capacity = -1;
 	this->dyn = false;
 	this->brute = false;
 	this->greedy = false;

@@ -11,7 +11,7 @@ class Knapsack {
 		~Knapsack();
 		std::vector<Item> contents;
 		void show();
-		int capasity;
+		int capacity;
 		int real_weight;
 		bool dyn, brute, greedy;
 };
